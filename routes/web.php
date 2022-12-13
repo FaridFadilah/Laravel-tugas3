@@ -19,8 +19,15 @@ use App\Http\Controllers\HomePageController;
 
 Route::get('/', HomePageController::class)->name('home');
 
-Route::resource('/product', ProductController::class);
-Route::resource('/blog', BlogController::class);
+Route::get('/product', [ProductController::class, 'index'])->name('product.name');
+Route::get('/product/{id}', [ProductController::class, 'index'])->name('product.name');
+Route::get('/blog', [BlogController::class, 'index'])->name('blog.name');
+Route::get('/blog/{id}', [BlogController::class, 'index'])->name('blog.name');
+
+Route::middleware([])->group(function(){
+  Route::resource('/product', ProductController::class)->except(['index', 'show']);
+  Route::resource('/blog', BlogController::class)->except(['index', 'show']);
+});
 
 Route::any('login', [AuthController::class, 'login'])->name('login')->middleware();
 Route::any('register', [AuthController::class, 'register'])->name('register')->middleware();
