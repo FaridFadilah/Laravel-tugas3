@@ -62,10 +62,8 @@ class ProductController extends Controller{
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show($id){
-        $data = Product::find($id)->first();
-        // dd($data);
-        return view('page.product.show', compact('data'));
+    public function show(Product $product){
+        return view('page.product.show', compact('product'));
     }
 
     /**

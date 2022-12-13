@@ -9,7 +9,7 @@
         @error('nama')
           <p class="text-red-500 italic">{{ $message }}</p>
         @enderror
-        <input type="text" autocomplete="off" placeholder="harga" name="harga" class="border-2 w-full rounded-lg border-[#1C315E] p-5 placeholder:text-[#1C315E]">
+        <input type="number" autocomplete="off" placeholder="harga" name="harga" class="border-2 w-full rounded-lg border-[#1C315E] p-5 placeholder:text-[#1C315E]">
         @error('harga')
           <p class="text-red-500 italic">{{ $message }}</p>
         @enderror

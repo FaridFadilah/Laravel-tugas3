@@ -13,7 +13,7 @@ class BlogController extends Controller{
      */
     public function index(){
         $data = Blog::all();
-        return view('page.product.index', compact("data"));
+        return view('page.blog.index', compact("data"));
     }
 
     /**

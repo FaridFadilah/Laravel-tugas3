@@ -33,6 +33,7 @@ class AuthController extends Controller{
         
         if(Auth::attempt($auth)){
             $request->session()->regenerate();
+            $request->session()->put('logged', true);
             return redirect()->intended('/');
         }
 
@@ -41,6 +42,7 @@ class AuthController extends Controller{
 
     public function logout(){
         Auth::logout();
+        session()->invalidate();
         return redirect()->route('home');
     }
 }

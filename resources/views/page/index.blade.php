@@ -13,7 +13,9 @@
     <div class="my-8 p-5 mx-10 rounded-xl container border-2 border-[#1C315E]">
       <div class="flex items-center justify-between">
         <h1 class="text-[#1C315E] text-2xl font-semibold">{{ __('Product') }}</h1>
+        @if(Auth::check())
         <a href="{{ route("product.create") }}" class="p-3 rounded-lg border-2 border-[#1C315E] hover:bg-[#1C315E] hover:text-[#C0EEE4] transition duration-200">{{ __('Tambah Produk') }}</a>
+        @endif
       </div>
       <div class="grid grid-cols-3 gap-5 my-5 items-center ">
         @foreach ($product as $item)
@@ -29,7 +31,9 @@
     <div class="my-8 p-5 mx-10 rounded-xl container border-2 border-[#1C315E]">
       <div class="flex items-center justify-between">
         <h1 class="text-[#1C315E] text-2xl font-semibold">{{ __('Blog') }}</h1>
+        @if(Auth::check())
         <a href="{{ route("blog.create") }}" class="p-3 rounded-lg border-2 border-[#1C315E] hover:bg-[#1C315E] hover:text-[#C0EEE4] transition duration-200">{{ __('Tambah Blog') }}</a>
+        @endif
       </div>
       <div class="grid grid-cols-3 gap-5 my-5 items-center ">
         @foreach ($blog as $item)

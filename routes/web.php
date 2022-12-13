@@ -19,18 +19,24 @@ use App\Http\Controllers\HomePageController;
 
 Route::get('/', HomePageController::class)->name('home');
 
-Route::get('/product', [ProductController::class, 'index'])->name('product.name');
-Route::get('/product/{id}', [ProductController::class, 'index'])->name('product.name');
-Route::get('/blog', [BlogController::class, 'index'])->name('blog.name');
-Route::get('/blog/{id}', [BlogController::class, 'index'])->name('blog.name');
+// Route::get('/product', [ProductController::class,'index'])->name('product.index');
+// Route::get('/product/{id}', [ProductController::class,'show'])->name('product.show');
 
-Route::middleware([])->group(function(){
-  Route::resource('/product', ProductController::class)->except(['index', 'show']);
-  Route::resource('/blog', BlogController::class)->except(['index', 'show']);
-});
+// Route::controller(ProductController::class)->name('product.')->group(function(){
+//   Route::get('/product/create', 'create')->name('create');
+//   Route::post('/product', 'store')->name('store');
+//   Route::get('/product/{id}/edit', 'edit')->name('edit');
+//   Route::put('/product/{id}', 'update')->name('update');
+//   Route::delete('/product/{id}', 'destroy')->name('destroy');
+// });
 
-Route::any('login', [AuthController::class, 'login'])->name('login')->middleware();
-Route::any('register', [AuthController::class, 'register'])->name('register')->middleware();
-Route::any('logout', [AuthController::class, 'logout'])->name('logout')->middleware();
+Route::resource('product', ProductController::class)->except(['index','show'])->middleware('withAuth');
+Route::get('/product', [ProductController::class,'index'])->name('product.index');
+Route::get('/product/{product}', [ProductController::class,'show'])->name('product.show');
+Route::resource('blog', BlogController::class);
+
+Route::any('login', [AuthController::class, 'login'])->name('login');
+Route::any('register', [AuthController::class, 'register'])->name('register');
+Route::any('logout', [AuthController::class, 'logout'])->name('logout');
 // Route::any("/login", [AuthController::class, 'login'])->name('login');
 // Route::any("/register", [AuthController::class, 'register'])->name('register');
